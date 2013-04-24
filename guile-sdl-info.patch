@@ -1,0 +1,14 @@
+--- guile-sdl-0.4.3/doc/guile-sdl.texi.orig	2013-03-18 12:40:00.000000000 +0100
++++ guile-sdl-0.4.3/doc/guile-sdl.texi	2013-04-23 21:26:23.051482309 +0200
+@@ -12,9 +12,9 @@
+ 
+ @include version.texi
+ 
+-@dircategory Guile modules
++@dircategory The Algorithmic Language Scheme:
+ @direntry
+-* Guile-SDL: (guile-sdl).     SDL for Guile.
++* Guile-SDL: (guile-sdl).		SDL for Guile
+ @end direntry
+ 
+ @copying

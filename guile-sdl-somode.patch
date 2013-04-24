@@ -1,0 +1,11 @@
+--- guile-sdl-0.4.3/build-aux/sofix.orig	2011-10-25 06:48:29.000000000 +0200
++++ guile-sdl-0.4.3/build-aux/sofix	2013-04-24 17:29:40.451785805 +0200
+@@ -65,7 +65,7 @@
+             $rep $la lib$la ;;
+     esac
+ 
+-    chmod -x $la $dlname
++    chmod -x $la
+ 
+     case $flags in *,no-la,*) rm -f $la ;; esac
+ done
