@@ -45,33 +45,41 @@
  
  PRIMPROC
  (imfi_mmx_p, "imfi-mmx?", 0, 1, 0,
---- guile-sdl-0.4.3/src/Makefile.am.orig	2013-03-18 12:40:00.000000000 +0100
-+++ guile-sdl-0.4.3/src/Makefile.am	2013-04-24 16:56:34.328535800 +0200
-@@ -18,7 +18,6 @@
+--- guile-sdl-0.5.0/src/Makefile.am.orig	2013-07-10 12:17:16.000000000 +0200
++++ guile-sdl-0.5.0/src/Makefile.am	2013-07-24 17:26:51.596567438 +0200
+@@ -18,7 +18,7 @@
  ## Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
  ## Boston, MA  02110-1301  USA
  
--SUBDIRS = SDL_gfx
+-SUBDIRS = SDL_gfx k
++SUBDIRS = k
  
  AM_CPPFLAGS = $(SDL_CFLAGS)
  AM_CFLAGS = $(NORMAL_CFLAGS)
-@@ -76,8 +75,7 @@
+@@ -85,13 +85,13 @@
  
  gfx_la_SOURCES  = sdlgfx.c $(headers)
  gfx_la_LDFLAGS  = $(modflags)
 -gfx_la_LIBADD   = SDL_gfx/libSDL_gfx.la \
 -                  SDL_gfx/libimfi.la
 +gfx_la_LIBADD   = -lSDL_gfx
++gfx_la_CPPFLAGS = -I/usr/include/SDL
  
- SUFFIXES = .c .fs
+ SUFFIXES = .c
  
---- guile-sdl-0.4.3/configure.ac.orig	2013-04-13 16:12:50.000000000 +0200
-+++ guile-sdl-0.4.3/configure.ac	2013-04-24 17:01:24.608523633 +0200
-@@ -121,7 +121,6 @@
+ gx		= $(top_srcdir)/build-aux/guile-baux/gbaux-do
+-snarfcppopts	= $(DEFS) $(DEFAULT_INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS)
++snarfcppopts	= $(DEFS) $(DEFAULT_INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) -I/usr/include/SDL
+ 
+ .c.x:
+ 	$(gx) c2x -o $@ $< -- $(snarfcppopts)
+--- guile-sdl-0.5.0/configure.ac.orig	2013-07-24 17:25:26.483237676 +0200
++++ guile-sdl-0.5.0/configure.ac	2013-07-24 17:27:34.633232297 +0200
+@@ -128,7 +128,6 @@
  AC_CONFIG_FILES([
    Makefile
    src/Makefile
 -  src/SDL_gfx/Makefile
+   src/k/Makefile
    doc/Makefile
    test/Makefile
-   test/zow
