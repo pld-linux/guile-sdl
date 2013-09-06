@@ -70,7 +70,8 @@ SDL_mixer. Dołączone są także wiązania do biblioteki SDL_gfx.
 %{__autoheader}
 %{__automake}
 %configure
-%{__make}
+# build is racy (generating some files vs compilation)
+%{__make} -j1
 
 %install
 rm -rf $RPM_BUILD_ROOT
