@@ -2,7 +2,7 @@ Summary:	Guile-SDL - set of modules that provide Guile bindings for SDL
 Summary(pl.UTF-8):	Guile-SDL - zestaw modułów zapewniających wiązania Guile do SDL
 Name:		guile-sdl
 Version:	0.5.2
-Release:	1
+Release:	2
 License:	LGPL v3+
 Group:		Libraries
 Source0:	http://ftp.gnu.org/gnu/guile-sdl/%{name}-%{version}.tar.xz
