@@ -1,15 +1,14 @@
 Summary:	Guile-SDL - set of modules that provide Guile bindings for SDL
 Summary(pl.UTF-8):	Guile-SDL - zestaw modułów zapewniających wiązania Guile do SDL
 Name:		guile-sdl
-Version:	0.5.2
-Release:	2
+Version:	0.5.3
+Release:	1
 License:	LGPL v3+
 Group:		Libraries
-Source0:	http://ftp.gnu.org/gnu/guile-sdl/%{name}-%{version}.tar.xz
-# Source0-md5:	554c9524fbb1279111716576c65baf14
+Source0:	https://ftp.gnu.org/gnu/guile-sdl/%{name}-%{version}.tar.lz
+# Source0-md5:	0d0a85c0170c6169586ac98d3558b6a3
 Patch0:		%{name}-info.patch
-Patch1:		%{name}-system-sdlgfx.patch
-Patch2:		%{name}-somode.patch
+Patch1:		%{name}-somode.patch
 URL:		http://www.gnu.org/software/guile-sdl/
 BuildRequires:	SDL-devel >= 1.2.0
 BuildRequires:	SDL_gfx-devel >= 2.0.22
@@ -20,9 +19,9 @@ BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake >= 1:1.12.2
 BuildRequires:	guile-devel >= 5:1.4
 BuildRequires:	libtool >= 2:2.4.2
+BuildRequires:	lzip
 BuildRequires:	texinfo
 BuildRequires:	tar >= 1:1.22
-BuildRequires:	xz
 Requires(post,postun):	/sbin/ldconfig
 Requires:	SDL >= 1.2.0
 Requires:	SDL_gfx >= 2.0.22
@@ -58,10 +57,6 @@ SDL_mixer. Dołączone są także wiązania do biblioteki SDL_gfx.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
-
-# ensure system SDL_gfx is used
-%{__rm} -r src/SDL_gfx
 
 %build
 %{__libtoolize}
@@ -69,7 +64,9 @@ SDL_mixer. Dołączone są także wiązania do biblioteki SDL_gfx.
 %{__autoconf}
 %{__autoheader}
 %{__automake}
-%configure
+%configure \
+	--disable-embedded-gfx
+
 # build is racy (generating some files vs compilation)
 %{__make} -j1
 
@@ -92,7 +89,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog HISTORY NEWS README THANKS
+%doc AUTHORS ChangeLog HISTORY NEWS README THANKS ugh/*.sed
 %dir %{_libdir}/guile-sdl
 %attr(755,root,root) %{_libdir}/guile-sdl/gfx.so
 %attr(755,root,root) %{_libdir}/guile-sdl/mixer.so
@@ -106,6 +103,3 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/guile/site/sdl/simple.scm
 %{_datadir}/guile/site/sdl/ttf
 %{_infodir}/guile-sdl.info*
-# -devel (scripts to update for guile-sdl 0.5 API)
-%dir %{_datadir}/guile-sdl
-%{_datadir}/guile-sdl/0.5
