@@ -73,7 +73,7 @@ SDL_mixer. Dołączone są także wiązania do biblioteki SDL_gfx.
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install \
+%{__make} -j1 install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 %clean
